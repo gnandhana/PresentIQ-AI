@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practice | PresentIQ AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            background: #f7f6fc;
+        }
+
+        .practice-nav {
+            background: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,.04);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #8065e8;
+        }
+
+        .practice-nav a {
+            text-decoration: none;
+            color: #8065e8;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .practice-container {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .practice-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .practice-heading span {
+            color: #8065e8;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .practice-heading h1 {
+            color: #25213d;
+            font-size: 32px;
+            margin: 15px 0;
+        }
+
+        .practice-heading p {
+            color: #888399;
+            font-size: 14px;
+        }
+
+        .practice-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.04);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #25213d;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ded9ed;
+            border-radius: 10px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #8065e8;
+            box-shadow: 0 0 0 3px #eeeaff;
+        }
+
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+            line-height: 1.8;
+        }
+
+        .form-group small {
+            display: block;
+            color: #9993aa;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .upload-box {
+            border: 2px dashed #cfc4f5;
+            background: #faf9ff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .upload-box .upload-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .upload-box p {
+            color: #77738a;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .upload-box input {
+            max-width: 100%;
+            font-size: 13px;
+        }
+
+        .upload-info {
+            color: #9993aa;
+            font-size: 11px;
+            margin-top: 12px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            background: #8065e8;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .submit-btn:hover {
+            background: #674bd2;
+            transform: translateY(-2px);
+        }
+
+        .flash-message {
+            background: #fff0f0;
+            color: #b33b3b;
+            padding: 12px;
+            border-radius: 9px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .tips-card {
+            margin-top: 25px;
+            padding: 22px;
+            background: #eeeaff;
+            border-radius: 12px;
+        }
+
+        .tips-card h3 {
+            color: #674bd2;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .tips-card p {
+            color: #77738a;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 600px) {
+            .practice-card {
+                padding: 23px;
+            }
+
+            .practice-heading h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="practice-nav">
+
+    <div class="logo">
+        PresentIQ <span>AI</span>
+    </div>
+
+    <a href="{{ url_for('dashboard') }}">
+        ← Back to Dashboard
+    </a>
+
+</header>
+
+
+<main class="practice-container">
+
+    <section class="practice-heading">
+
+        <span>YOUR PRACTICE SESSION</span>
+
+        <h1>Let's Improve Your Presentation! 🎤</h1>
+
+        <p>
+            Enter your speech and optionally upload a recording
+            to begin your AI-powered practice session.
+        </p>
+
+    </section>
+
+
+    <section class="practice-card">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="flash-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+        <form method="POST"
+              action="{{ url_for('practice') }}"
+              enctype="multipart/form-data">
+
+            <div class="form-group">
+
+                <label for="title">Presentation Title</label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Example: Artificial Intelligence"
+                    maxlength="255"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="speech_text">
+                    Enter Your Presentation Speech
+                </label>
+
+                <textarea
+                    id="speech_text"
+                    name="speech_text"
+                    placeholder="Start typing your presentation speech here..."
+                ></textarea>
+
+                <small>
+                    Enter your speech to receive AI-powered content feedback.
+                </small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Upload Your Presentation Recording (Optional)</label>
+
+                <div class="upload-box">
+
+                    <div class="upload-icon">🎥</div>
+
+                    <p>
+                        Select your presentation recording from your device.
+                    </p>
+
+                    <input
+                        type="file"
+                        name="recording"
+                        id="recording"
+                        accept=".mp4,.webm,.mov,.mkv,video/mp4,video/webm,video/quicktime"
+                    >
+
+                    <div class="upload-info">
+                        Supported formats: MP4, WEBM, MOV, MKV.
+                        Maximum size: 200 MB.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="submit-btn">
+                ✨ Analyze My Presentation
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section class="tips-card">
+
+        <h3>💡 Tips for Better Practice</h3>
+
+        <p>
+            • Organize your speech with a clear introduction and conclusion.<br>
+            • Use simple and understandable sentences.<br>
+            • Avoid unnecessary repetition.<br>
+            • Practice speaking clearly and confidently.<br>
+            • Review your AI feedback and improve your next attempt.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <h2>PresentIQ <span>AI</span></h2>
+    <p>Practice Smarter. Present Better.</p>
+    <p>© 2026 PresentIQ AI. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

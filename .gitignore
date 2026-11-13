@@ -1,0 +1,24 @@
+
+# Environment variables and API keys
+.env
+.env.*
+
+# Python virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Uploaded recordings
+recordings/
+uploads/
+
+# IDE files
+.vscode/
+
+# Local database files
+*.sqlite3
+*.db

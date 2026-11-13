@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PresentIQ AI | Practice Smarter. Present Better.</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">PresentIQ <span>AI</span></div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="{{ url_for('login') }}" class="nav-login">Login</a>
+        <a href="{{ url_for('register') }}" class="nav-register">Get Started</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+        <span class="tagline">YOUR PERSONAL AI PRESENTATION COACH</span>
+
+        <h1>
+            Practice Smarter.<br>
+            <span>Present Better.</span>
+        </h1>
+
+        <p>
+            Improve your presentation skills with the power of AI.
+            Practice your speech, receive intelligent feedback
+            and become a confident speaker.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="{{ url_for('register') }}" class="primary-btn">
+                Start Practicing →
+            </a>
+
+            <a href="#features" class="secondary-btn">
+                Explore Features
+            </a>
+        </div>
+
+        <div class="hero-stats">
+            <div>
+                <h3>AI Powered</h3>
+                <p>Smart Feedback</p>
+            </div>
+
+            <div>
+                <h3>Anytime</h3>
+                <p>Practice Freely</p>
+            </div>
+
+            <div>
+                <h3>Improve</h3>
+                <p>Every Presentation</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <div class="floating-card">
+            <div class="card-icon">✦</div>
+            <h3>Your AI Coach</h3>
+            <p>Ready to improve your presentation?</p>
+
+            <div class="progress-title">
+                <span>Presentation Skills</span>
+                <span>85%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+
+            <div class="coach-message">
+                ✨ Keep practicing. You're improving!
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="features" id="features">
+
+    <div class="section-heading">
+        <span>WHAT WE OFFER</span>
+        <h2>Everything You Need to Present Better</h2>
+        <p>Smart tools to help you become a confident presenter.</p>
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">🎤</div>
+            <h3>Speech Practice</h3>
+            <p>Practice your presentation by entering your speech and recording yourself.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>AI Feedback</h3>
+            <p>Receive AI-powered suggestions to improve your presentation content.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Performance Score</h3>
+            <p>Understand your presentation performance with an overall score.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📁</div>
+            <h3>Practice History</h3>
+            <p>View your previous presentations and track your improvements.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="about" id="about">
+    <div class="about-content">
+        <span>ABOUT PRESENTIQ AI</span>
+        <h2>Turn Your Practice Into Confidence.</h2>
+        <p>
+            PresentIQ AI is an intelligent presentation practice
+            platform designed to help students and individuals
+            improve their public speaking skills through
+            AI-powered feedback and continuous practice.
+        </p>
+        <a href="{{ url_for('register') }}" class="primary-btn">
+            Join PresentIQ AI →
+        </a>
+    </div>
+</section>
+
+<footer>
+    <h2>PresentIQ <span>AI</span></h2>
+    <p>Practice Smarter. Present Better.</p>
+    <p>© 2026 PresentIQ AI. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

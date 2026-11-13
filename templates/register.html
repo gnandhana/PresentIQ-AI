@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | PresentIQ AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f2ff, #e9e3ff);
+            padding: 25px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 440px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 45px rgba(65, 43, 130, 0.12);
+        }
+
+        .auth-logo {
+            text-align: center;
+            font-size: 27px;
+            font-weight: 800;
+            color: #25213d;
+        }
+
+        .auth-logo span {
+            color: #8065e8;
+        }
+
+        .auth-container h2 {
+            text-align: center;
+            margin-top: 25px;
+            color: #25213d;
+            font-size: 25px;
+        }
+
+        .auth-description {
+            text-align: center;
+            color: #888399;
+            font-size: 13px;
+            margin: 10px 0 25px;
+        }
+
+        .auth-container label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 17px 0 8px;
+        }
+
+        .auth-container input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd8ec;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .auth-container input:focus {
+            border-color: #8065e8;
+            box-shadow: 0 0 0 3px #eeeaff;
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 14px;
+            background: #8065e8;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            margin-top: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .auth-button:hover {
+            background: #674bd2;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #888399;
+        }
+
+        .auth-footer a {
+            color: #8065e8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .flash-message {
+            background: #fff0f0;
+            color: #b33b3b;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #8065e8;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <div class="auth-logo">PresentIQ <span>AI</span></div>
+
+    <h2>Create Your Account</h2>
+
+    <p class="auth-description">
+        Start your journey towards confident presentations.
+    </p>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('register') }}">
+
+        <label>Full Name</label>
+        <input type="text" name="name"
+               placeholder="Enter your full name" required>
+
+        <label>Email Address</label>
+        <input type="email" name="email"
+               placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password"
+               placeholder="Create a password"
+               minlength="6" required>
+
+        <button type="submit" class="auth-button">
+            Create Account →
+        </button>
+
+    </form>
+
+    <div class="auth-footer">
+        Already have an account?
+        <a href="{{ url_for('login') }}">Login</a>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="back-home">
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>

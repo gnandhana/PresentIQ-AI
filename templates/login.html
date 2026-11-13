@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | PresentIQ AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f2ff, #e9e3ff);
+            padding: 25px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 440px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 45px rgba(65,43,130,0.12);
+        }
+
+        .auth-logo {
+            text-align: center;
+            font-size: 27px;
+            font-weight: 800;
+            color: #25213d;
+        }
+
+        .auth-logo span {
+            color: #8065e8;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 25px;
+            color: #25213d;
+        }
+
+        .description {
+            text-align: center;
+            color: #888399;
+            font-size: 13px;
+            margin: 10px 0 25px;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd8ec;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #8065e8;
+            box-shadow: 0 0 0 3px #eeeaff;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #8065e8;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            margin-top: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #674bd2;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #888399;
+        }
+
+        .auth-footer a,
+        .back-home {
+            color: #8065e8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13px;
+        }
+
+        .flash-message {
+            background: #fff0f0;
+            color: #b33b3b;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <div class="auth-logo">PresentIQ <span>AI</span></div>
+
+    <h2>Welcome Back!</h2>
+
+    <p class="description">
+        Login to continue improving your presentation skills.
+    </p>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('login') }}">
+
+        <label>Email Address</label>
+        <input type="email" name="email"
+               placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password"
+               placeholder="Enter your password" required>
+
+        <button type="submit">Login →</button>
+
+    </form>
+
+    <div class="auth-footer">
+        Don't have an account?
+        <a href="{{ url_for('register') }}">Register</a>
+    </div>
+
+        ← Back to Home<a href="{{ url_for('index') }}" class="back-home"></a>
+    </a>
+
+</div>
+
+</body>
+</html>

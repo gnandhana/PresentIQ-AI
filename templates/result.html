@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Result | PresentIQ AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f0ff;
+            color: #29213d;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #6c3bb5;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 20px rgba(70, 40, 120, 0.08);
+        }
+
+        .score {
+            text-align: center;
+        }
+
+        .score-circle {
+            width: 145px;
+            height: 145px;
+            border: 9px solid #8b5bd6;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        .score-circle h2 {
+            font-size: 42px;
+            color: #6c3bb5;
+        }
+
+        .score-circle span {
+            color: #777;
+        }
+
+        h2 {
+            color: #6c3bb5;
+            margin-bottom: 15px;
+        }
+
+        .feedback {
+            white-space: pre-line;
+            line-height: 1.8;
+            color: #514965;
+        }
+
+        .speech {
+            white-space: pre-wrap;
+            line-height: 1.7;
+            color: #514965;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .button {
+            display: inline-block;
+            background: #7545bd;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 9px;
+            text-decoration: none;
+            margin: 8px;
+        }
+
+        .button:hover {
+            background: #593197;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .date {
+            color: #888;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>PresentIQ AI</h1>
+            <p>Your presentation practice results</p>
+        </div>
+
+        <div class="card score">
+            <h2>{{ presentation.title }}</h2>
+            <p>Here is your practice performance!</p>
+
+            <div class="score-circle">
+                <h2>{{ presentation.score }}</h2>
+                <span>Out of 100</span>
+            </div>
+
+            <p>Keep practising and improve your presentation skills!</p>
+
+            <p class="date">
+                {{ presentation.created_at }}
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>AI Feedback</h2>
+
+            <div class="feedback">
+                {% if presentation.feedback %}
+                    {{ presentation.feedback }}
+                {% else %}
+                    No feedback is available yet.
+                {% endif %}
+            </div>
+        </div>
+
+        {% if presentation.speech_text %}
+        <div class="card">
+            <h2>Your Speech</h2>
+            <div class="speech">{{ presentation.speech_text }}</div>
+        </div>
+        {% endif %}
+
+        <div class="actions">
+            <a href="{{ url_for('practice') }}" class="button">
+                Practice Again
+            </a>
+
+            <a href="{{ url_for('dashboard') }}" class="button">
+                Back to Dashboard
+            </a>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+
+Flask
+mysql-connector-python
+google-genai
+python-dotenv
+Werkzeug
